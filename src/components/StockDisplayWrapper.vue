@@ -22,7 +22,15 @@
         cols="12"
         sm="4"
       >
-      <StockTicker :ticker="n"/>
+        <v-card
+        outlined
+        class="ma-4"
+        >
+          <v-layout align-end>
+            <v-btn x-small color="red" @click="removeTicker(n)">X</v-btn>
+          </v-layout>
+          <StockTicker :ticker="n"/>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -48,6 +56,9 @@ export default {
       }
       this.stockList.push(this.newTicker)
       this.newTicker = ""
+    },
+    removeTicker: function(tickerName) {
+      this.stockList.splice(this.stockList.indexOf(tickerName), 1)
     }
   }
 };
